@@ -1,0 +1,50 @@
+.todoInput {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    width: 600px;
+    outline: none;
+  }
+  
+  .addButton {
+    /* padding: 5px 8px; */
+    background-color: #d10e3cd3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .addButton svg {
+    font-size: 24px;
+  }
+  
+  .addButton:hover {
+    background-color: #d10e3cd3;
+  }
+  .cancelButton{
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: medium;
+  }
+
+  .btn{
+    border: none;
+    background-color: #fff;
+    color: brown;
+    font-size: medium;
+  }
+.ad{
+    font-size: x-large;
+}
