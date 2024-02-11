@@ -2,9 +2,11 @@ import { useRef, useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
 // import { RiAddLine } from "react-icons/ri";
 import classes from "./AddToda.module.css";
+import { useRouter } from "next/router";
 
 const AddTodo = (props) => {
   const todoRef = useRef();
+  const router = useRouter()
   const [isAddTodo, setIsAddTodo] = useState(false);
 
   const startAddTodo = () => {
@@ -13,43 +15,54 @@ const AddTodo = (props) => {
   const closeAddTodo = () => {
     setIsAddTodo(false);
   };
-  const todoFormSubmitHandler = (event) => {
+  const todoFormSubmitHandler = async(event) => {
     event.preventDefault();
     const newTodo = {
       todo: todoRef.current.value,
       date: new Date().toISOString(),
     };
-    props.onAddTodo(newTodo);
-    console.log("Adding todo", newTodo);
-    todoRef.current.value = ""
-    setIsAddTodo(false)
+    const response = await fetch("/api/todos", {
+        method: "POST",
+        body: JSON.stringify(newTodo),
+        headers: {
+            "Content-Type" : "application/json"
+        }
+    })
+    const data = await response.json()
+    // props.onAddTodo(newTodo);
+    // // console.log("Adding todo", newTodo);
+    console.log("Adding todo", data);
+    router.push("/")
+
+    todoRef.current.value = "";
+    setIsAddTodo(false);
   };
   return (
     // <div>
     //   <p3>AddTodo</p3>
-      <div>
-        {isAddTodo && (
-          <form className={classes.todoInput} onSubmit={todoFormSubmitHandler}>
-            <input
-              type="text"
-              placeholder="Task name..."
-              ref={todoRef}
-              className={classes.input}
-            />
-            <button className={classes.addButton}>Add task</button>
-            <button className={classes.cancelButton} onClick={closeAddTodo}>
-              Cancel
-            </button>
-          </form>
-        )}
-        {!isAddTodo && (
-          <button onClick={startAddTodo} className={classes.btn}>
-            {/* <RiAddLine /> */}
-            <IoIosAddCircle  className={classes.ad}/>
-            {"Add task"}
+    <div>
+      {isAddTodo && (
+        <form className={classes.todoInput} onSubmit={todoFormSubmitHandler}>
+          <input
+            type="text"
+            placeholder="Task name..."
+            ref={todoRef}
+            className={classes.input}
+          />
+          <button className={classes.addButton}>Add task</button>
+          <button className={classes.cancelButton} onClick={closeAddTodo}>
+            Cancel
           </button>
-        )}
-      </div>
+        </form>
+      )}
+      {!isAddTodo && (
+        <button onClick={startAddTodo} className={classes.btn}>
+          {/* <RiAddLine /> */}
+          <IoIosAddCircle className={classes.ad} />
+          {"Add task"}
+        </button>
+      )}
+    </div>
     // </div>
   );
 };
