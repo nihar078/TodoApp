@@ -18,7 +18,9 @@
     align-items: center;
     justify-content: space-between;
   }
-
+  .done{
+    text-decoration: line-through;
+  }
   .compbtn{
     border: none;
     font-size: large;

@@ -1,9 +1,11 @@
 import { Fragment, useEffect, useState } from "react";
 import AddTodo from "./AddTodo";
 import TodoActiveTask from "./TodoActiveTask";
-import CompleteTodoTask from "./CompleteTodo";
+// import { useRouter } from "next/navigation";
+// import CompleteTodoTask from "./CompleteTodo";
 
 const TodoList = (props) => {
+  // const router = useRouter()
   //   const [tasks, setTasks] = useState([]);
   //   const [compeleteTasks, setCompeleteTasks] = useState([]);
 
@@ -15,12 +17,24 @@ const TodoList = (props) => {
   //     setTasks((prevTasks) => [...prevTasks, todo]);
   //   };
 
-  //   const compeletedTaskHandler = (taskId) => {
-  //     const cmpltTask = tasks.find((task) => task.id === taskId);
-  //     setCompeleteTasks((prevCmpTsk) => [...prevCmpTsk, cmpltTask]);
-  //     setTasks((prevTsk) => prevTsk.filter((tsk) => tsk.id !== taskId));
-  //   };
-//   console.log(props)
+  // const compeletedTaskHandler = async(id) => {
+  //     console.log(id)
+  //     const updatedTodo = {
+  //         todo: props.tasks.todo,
+  //         date: new Date().toISOString(),
+  //         isCompleted: true
+  //       };
+  //     await fetch("/api/cmplttodos", {
+  //         method: "PUT",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify( updatedTodo),
+  //       });
+  //       router.push("/completetodos")
+  // };
+  //   console.log(props)
+
   return (
     <Fragment>
       <h1>list</h1>
@@ -30,7 +44,8 @@ const TodoList = (props) => {
           tsk={todo.todo}
           id={todo.id}
           date={todo.date}
-        //   cmpltTsk = {(id)=> compeletedTaskHandler(todo.id)} 
+          isCompleted={todo.isCompleted}
+          //   cmpltTsk = {()=> compeletedTaskHandler(todo.id)}
         />
       ))}
       {/* {compeleteTasks.map((todo) => (

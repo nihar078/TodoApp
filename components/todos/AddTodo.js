@@ -20,6 +20,7 @@ const AddTodo = (props) => {
     const newTodo = {
       todo: todoRef.current.value,
       date: new Date().toISOString(),
+      isCompleted: false
     };
     const response = await fetch("/api/todos", {
         method: "POST",

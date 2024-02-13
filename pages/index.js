@@ -47,6 +47,7 @@ export async function getStaticProps() {
         todo: todo.todo,
         date: todo.date,
         id: todo._id.toString(),
+        isCompleted:todo.isCompleted
       })),
     },
     revalidate: 1,
@@ -54,12 +55,3 @@ export async function getStaticProps() {
 }
 
 export default HomePage;
-
-// export async function getStaticProps(){
-
-//     return{
-//         props: {
-//             todos:
-//         }
-//     }
-// }
