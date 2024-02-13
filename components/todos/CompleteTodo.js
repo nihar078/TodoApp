@@ -12,6 +12,7 @@ const CompleteTodoTask = (props) => {
     // minute: "numeric",
     // hour12: true,
   });
+  
   return (
     <div className={classes.container}>
       <div className={classes.list}>

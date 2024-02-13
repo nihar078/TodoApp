@@ -21,6 +21,7 @@ console.log(props)
     <Fragment>
       {/* <h1>Home Page</h1> */}
       {/* <TodoList tasks={props.todos}/> */}
+      
       <TodoList tasks = {props.todos.filter(todo => !todo.isCompleted)}/>
       {/* <AddTodo onAddTodo={addNewTodoHandler} /> */}
     </Fragment>

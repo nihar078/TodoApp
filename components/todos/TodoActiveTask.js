@@ -16,6 +16,7 @@ const TodoActiveTask = (props) => {
     // minute: "numeric",
     // hour12: true,
   });
+  
   const completeTaskHandler = async (data) => {
     console.log(data);
     console.log(data.id);
