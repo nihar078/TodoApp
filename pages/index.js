@@ -4,25 +4,25 @@ import { MongoClient } from "mongodb";
 import { Fragment } from "react";
 
 function HomePage(props) {
-//   const addNewTodoHandler = async (newTodo) => {
-//     const response = await fetch("/api/todos", {
-//       method: "POST",
-//       body: JSON.stringify(newTodo),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-//     const data = await response.json();
-//     // props.onAddTodo(newTodo);
-//     console.log("Adding todo", data);
-//   };
-console.log(props)
+  //   const addNewTodoHandler = async (newTodo) => {
+  //     const response = await fetch("/api/todos", {
+  //       method: "POST",
+  //       body: JSON.stringify(newTodo),
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     // props.onAddTodo(newTodo);
+  //     console.log("Adding todo", data);
+  //   };
+  console.log(props);
   return (
     <Fragment>
       {/* <h1>Home Page</h1> */}
       {/* <TodoList tasks={props.todos}/> */}
-      
-      <TodoList tasks = {props.todos.filter(todo => !todo.isCompleted)}/>
+
+      <TodoList tasks={props.todos.filter((todo) => !todo.isCompleted)} />
       {/* <AddTodo onAddTodo={addNewTodoHandler} /> */}
     </Fragment>
   );
@@ -39,7 +39,7 @@ export async function getStaticProps() {
 
   const todosData = await todosCollection.find().toArray();
 
-//   console.log(todosData)
+  //   console.log(todosData)
 
   client.close();
 
@@ -49,7 +49,7 @@ export async function getStaticProps() {
         todo: todo.todo,
         date: todo.date,
         id: todo._id.toString(),
-        isCompleted:todo.isCompleted
+        isCompleted: todo.isCompleted,
       })),
     },
     revalidate: 1,

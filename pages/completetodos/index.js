@@ -27,7 +27,9 @@ export async function getStaticProps() {
   );
   const db = client.db();
   const todosCollection = db.collection("todos");
-  const completedTodos = await todosCollection.find({ isCompleted: true }).toArray();
+  const completedTodos = await todosCollection
+    .find({ isCompleted: true })
+    .toArray();
   client.close();
 
   return {

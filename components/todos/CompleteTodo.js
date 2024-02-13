@@ -2,9 +2,8 @@ import { useRouter } from "next/router";
 import classes from "./TodoActiveTask.module.css";
 import { MdDelete } from "react-icons/md";
 
-
 const CompleteTodoTask = (props) => {
-const router = useRouter()
+  const router = useRouter();
   const dateObject = new Date(props.date);
 
   const formattedDate = dateObject.toLocaleString("en-US", {
@@ -25,15 +24,18 @@ const router = useRouter()
         "Content-Type": "application/json",
       },
     });
-    router.push("/completetodos")
+    router.push("/completetodos");
   };
 
   return (
     <div className={classes.container}>
       <div className={classes.list}>
-        <span >{props.tsk}</span>
+        <span>{props.tsk}</span>
         <span>{formattedDate}</span>
-        <button className={classes.delbtn} onClick={()=>deleteHandler(props.id)}>
+        <button
+          className={classes.delbtn}
+          onClick={() => deleteHandler(props.id)}
+        >
           <MdDelete />
         </button>
       </div>

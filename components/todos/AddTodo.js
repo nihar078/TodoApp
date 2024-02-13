@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 const AddTodo = (props) => {
   const todoRef = useRef();
-  const router = useRouter()
+  const router = useRouter();
   const [isAddTodo, setIsAddTodo] = useState(false);
 
   const startAddTodo = () => {
@@ -15,25 +15,25 @@ const AddTodo = (props) => {
   const closeAddTodo = () => {
     setIsAddTodo(false);
   };
-  const todoFormSubmitHandler = async(event) => {
+  const todoFormSubmitHandler = async (event) => {
     event.preventDefault();
     const newTodo = {
       todo: todoRef.current.value,
       date: new Date().toISOString(),
-      isCompleted: false
+      isCompleted: false,
     };
     const response = await fetch("/api/todos", {
-        method: "POST",
-        body: JSON.stringify(newTodo),
-        headers: {
-            "Content-Type" : "application/json"
-        }
-    })
-    const data = await response.json()
+      method: "POST",
+      body: JSON.stringify(newTodo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
     // props.onAddTodo(newTodo);
     // // console.log("Adding todo", newTodo);
     console.log("Adding todo", data);
-    router.push("/")
+    router.push("/");
 
     todoRef.current.value = "";
     setIsAddTodo(false);

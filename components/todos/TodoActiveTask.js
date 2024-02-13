@@ -36,33 +36,36 @@ const TodoActiveTask = (props) => {
     router.push("/");
   };
 
-  const deleteTodoHandler = async(id)=>{
+  const deleteTodoHandler = async (id) => {
     await fetch("/api/todos/", {
       method: "DELETE",
       body: JSON.stringify(id),
       headers: {
-        "Content-Type" : "application/json"
-      }
-    })
-    router.push("/")
-  }
+        "Content-Type": "application/json",
+      },
+    });
+    router.push("/");
+  };
 
   return (
     <div className={classes.container}>
-        <div className={classes.list}>
-          <button
-            className={classes.compbtn}
-            onClick={() => completeTaskHandler(props)}
-            disabled={props.isCompleted}
-          >
-            <MdOutlineRadioButtonUnchecked />
-          </button>
-          <span >{props.tsk}</span>
-          <span >{formattedDate}</span>
-          <button className={classes.delbtn} onClick={()=>deleteTodoHandler(props.id)}>
-            <MdDelete />
-          </button>
-        </div>
+      <div className={classes.list}>
+        <button
+          className={classes.compbtn}
+          onClick={() => completeTaskHandler(props)}
+          disabled={props.isCompleted}
+        >
+          <MdOutlineRadioButtonUnchecked />
+        </button>
+        <span>{props.tsk}</span>
+        <span>{formattedDate}</span>
+        <button
+          className={classes.delbtn}
+          onClick={() => deleteTodoHandler(props.id)}
+        >
+          <MdDelete />
+        </button>
+      </div>
     </div>
   );
 };
