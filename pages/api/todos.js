@@ -37,6 +37,19 @@ async function handler(req, res) {
   } else if (req.method === "POST" && req.body.isCompleted) {
     // Redirect to the completed tasks page
     res.redirect(307, "/completetodos");
+  } else if (req.method === "DELETE") {
+    const id = req.body;
+
+    const client = await MongoClient.connect(
+      "mongodb+srv://nihar078:qnsD5DBWbttSpBWF@cluster1.el8weux.mongodb.net/todos?retryWrites=true&w=majority"
+    );
+    const db = client.db();
+    const todosCollection = db.collection("todos");
+    const result = await todosCollection.deleteOne({ _id: new ObjectId(id) });
+    console.log(result);
+    client.close();
+
+    res.status(201).json({ message: "Todo deleted succesfully!" });
   }
 }
 

@@ -7,12 +7,13 @@ const CompleteTodosPage = (props) => {
   return (
     <Fragment>
       <h1>Completed Todos</h1>
-      
+
       {props.completedTodos.map((todo) => (
         <CompleteTodoTask
           key={todo.id}
           tsk={todo.todo}
           date={todo.date}
+          id={todo.id}
         />
       ))}
     </Fragment>

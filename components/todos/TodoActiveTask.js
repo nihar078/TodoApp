@@ -16,7 +16,7 @@ const TodoActiveTask = (props) => {
     // minute: "numeric",
     // hour12: true,
   });
-  
+
   const completeTaskHandler = async (data) => {
     console.log(data);
     console.log(data.id);
@@ -28,13 +28,24 @@ const TodoActiveTask = (props) => {
     console.log(updatedTodo);
     await fetch("/api/todos/", {
       method: "PUT",
+      body: JSON.stringify({ id: data.id, updatedTodo: updatedTodo }),
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: data.id, updatedTodo: updatedTodo }),
     });
     router.push("/");
   };
+
+  const deleteTodoHandler = async(id)=>{
+    await fetch("/api/todos/", {
+      method: "DELETE",
+      body: JSON.stringify(id),
+      headers: {
+        "Content-Type" : "application/json"
+      }
+    })
+    router.push("/")
+  }
 
   return (
     <div className={classes.container}>
@@ -48,7 +59,7 @@ const TodoActiveTask = (props) => {
           </button>
           <span >{props.tsk}</span>
           <span >{formattedDate}</span>
-          <button className={classes.delbtn}>
+          <button className={classes.delbtn} onClick={()=>deleteTodoHandler(props.id)}>
             <MdDelete />
           </button>
         </div>
