@@ -19,8 +19,9 @@ function HomePage(props) {
 console.log(props)
   return (
     <Fragment>
-      <h1>Home Page</h1>
-      <TodoList tasks={props.todos}/>
+      {/* <h1>Home Page</h1> */}
+      {/* <TodoList tasks={props.todos}/> */}
+      <TodoList tasks = {props.todos.filter(todo => !todo.isCompleted)}/>
       {/* <AddTodo onAddTodo={addNewTodoHandler} /> */}
     </Fragment>
   );

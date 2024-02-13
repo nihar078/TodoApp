@@ -1,5 +1,4 @@
-import { MongoClient } from "mongodb";
-import { ObjectId } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 
 async function handler(req, res) {
   if (req.method === "POST") {
@@ -18,7 +17,6 @@ async function handler(req, res) {
     client.close();
     res.status(201).json({ message: "New Todo inserted!" });
   } else if (req.method === "PUT") {
-    // const { _id} = req.body;
     const { id, updatedTodo } = req.body;
     console.log(updatedTodo);
 
@@ -36,6 +34,9 @@ async function handler(req, res) {
     console.log(result);
     client.close();
     res.status(200).json({ message: "Todo updated!" });
+  } else if (req.method === "POST" && req.body.isCompleted) {
+    // Redirect to the completed tasks page
+    res.redirect(307, "/completetodos");
   }
 }
 
